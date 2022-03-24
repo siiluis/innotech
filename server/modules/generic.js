@@ -7,6 +7,7 @@ const { commands } = require("../db/commands/commands");
 
 
 router.get(`/get*`, async (req,res)=>{
+  console.log(req.originalUrl);
     res.status(200).json({
         data: await querys.getView(req.originalUrl.split("/")[2]),
     });
@@ -47,7 +48,7 @@ router.delete(`/*/:id`, async (req, res) => {
     res.status(200).json({
       data: {msg:"Borrado"},
     });
-  });  
+  });
 
 
 module.exports = router;

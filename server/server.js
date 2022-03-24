@@ -7,7 +7,7 @@ const auth = require("./modules/auth")
 const generic = require("./modules/generic");
 
 const app = express();
-const port = 3000;
+const port = 3004;
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", auth);
 app.use("/api", generic);
-/* 
+/*
 app.use("/auth", auth);
 /* app.use("/accesorios", accesorios);
 
