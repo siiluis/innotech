@@ -9,10 +9,13 @@ class Empleados {}
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  constructor(public empleadosService: EmpleadosService, private router: Router) {}
+  constructor(
+    public empleadosService: EmpleadosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.empleadosService.getEmpleados();
+    console.log(this.empleadosService.empleadosLista1);
   }
 }
-

@@ -22,7 +22,15 @@
     </div>
     <div class="inputForm">
       <label style="color: white" for="area">Area:</label>
-      <input type="text" id="area" formControlName="area" required />
+      <select
+        name="miselect"
+        [(ngModel)]="areasSeleccionada"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <option [value]="item" *ngFor="let item of areas">
+          {{ item.nombre }}
+        </option>
+      </select>
     </div>
   </div>
   <div style="text-align: center">

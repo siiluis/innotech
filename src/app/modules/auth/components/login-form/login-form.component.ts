@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('dsdsd', [Validators.required]),
+    password: new FormControl('12345678', [Validators.required]),
   });
   constructor(private route: ActivatedRoute, private authService: AuthService) {
     this.route.url.subscribe((route) => {

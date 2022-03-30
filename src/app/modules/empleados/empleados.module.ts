@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormAddComponent } from './components/form/form.component';
 import { ListComponent } from '../empleados/components/list/list.component';
 import { ModulesModule } from 'src/app/shared/modules/modules.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [HomeComponent, FormAddComponent, ListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), ModulesModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ModulesModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class EmpleadosModule {}

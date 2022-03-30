@@ -5,6 +5,10 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+interface ResponseLogin {
+  access_token: string;
+}
+
 function cifrarPassword(password: string): string {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
@@ -29,11 +33,11 @@ export class AuthService {
     return localStorage.getItem('token') ? true : false;
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     this.http
-      .post(`${this.API}/login`, { email, password })
-      .subscribe((response: any) => {
-        localStorage.setItem('token', response.data);
+      .post<ResponseLogin>(`${this.API}/login`, { username, password })
+      .subscribe((response: ResponseLogin) => {
+        localStorage.setItem('token', response.access_token);
         this.router.navigateByUrl('app');
       });
   }
