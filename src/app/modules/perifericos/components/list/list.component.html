@@ -1,0 +1,38 @@
+<div class="tableContainer">
+  <h1>Perifericos</h1>
+  <hr color="white" />
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Descripcion</th>
+      <th>Marca</th>
+      <th>Fecha Creacion</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let periferico of perifericosService.periferciosLista">
+      <td>{{ periferico.id }}</td>
+      <td>
+        {{ periferico.descripcion }}
+      </td>
+      <td>{{ periferico.marca }}</td>
+
+      <td>{{ periferico.createdAt | date }}</td>
+
+      <td>
+        <a>
+          <i
+            (click)="redirect(periferico)"
+            class="fa fa-pencil-square"
+            style="font-size: 25px; padding-right: 2px; cursor: pointer"
+          ></i
+        ></a>
+        <i
+          class="fa fa-times-rectangle"
+          (click)="perifericosService.deletePerifericos(periferico.id)"
+          style="font-size: 25px; cursor: pointer; color: red"
+        ></i>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--  ng-click="eliminar(item.ID)" -->

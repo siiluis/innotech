@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EquiposService } from '../../equipos.service';
+import { IEquipo } from '../../models/equipo.model';
 
 class Equipo {}
 @Component({
@@ -13,5 +14,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.equiposService.getEquipos();
+  }
+
+  redirect(equipo: IEquipo) {
+    this.router.navigate(['/app/modules/equipos/add'], {
+      state: { data: equipo },
+    });
   }
 }

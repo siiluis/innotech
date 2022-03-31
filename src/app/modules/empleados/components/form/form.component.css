@@ -93,3 +93,10 @@ input[type="checkbox"]:checked:before {
   background: #dddddd;
   cursor: default;
 }
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+mat-form-field.mat-form-field {
+  background-color: white;
+}

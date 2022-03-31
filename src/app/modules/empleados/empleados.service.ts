@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Empleado, IEmpleado, IEmpleado1 } from './models/empleados.model';
 import { IResponse, MyResponse } from 'src/app/shared/models/response.model';
 import { Router } from '@angular/router';
 import { NotificacionesService } from 'src/app/shared/notificaciones.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,9 @@ export class EmpleadosService {
   empleadosLista: IEmpleado[] = [];
   empleadosLista1: IEmpleado1[] = [];
   empleados: Empleado = new Empleado();
+
+  empleados$ = new EventEmitter<IEmpleado1[]>();
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -32,6 +36,7 @@ export class EmpleadosService {
   getEmpleados() {
     this.http.get<MyResponse>(this.API).subscribe((response: MyResponse) => {
       this.empleadosLista1 = response.data;
+      this.empleados$.emit(this.empleadosLista1);
     });
   }
 
@@ -40,7 +45,9 @@ export class EmpleadosService {
   }
 
   updateEmpleados(empleado: IEmpleado1) {
+    console.log(empleado);
     this.http
+
       .patch<IResponse>(`${this.API}/${empleado.id}`, empleado)
       .subscribe((response: IResponse) => {
         this.notificacionService.alertOk('OK', 'Se actualizo el empleado.');

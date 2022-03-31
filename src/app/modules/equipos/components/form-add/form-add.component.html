@@ -1,62 +1,61 @@
 <form class="formAsignar" [formGroup]="equipoForm">
-  <div>
-    <h2 style="color: white; text-align: center">Asignar equipo</h2>
-    <hr color="white" style="width: 50%" />
-  </div>
-  <div class="inputForm">
-    <label for="selectedTipo">TIPO EQUIPO:</label>
-    <select name="" id="selectedTipo" class="selectForm" style="width: 50%">
-      <option value="1">LAPTOP</option>
-      <option value="2">DESKTOP</option>
-    </select>
-  </div>
-  <div class="inputForm">
-    <label for="serialNumber">SERIAL:</label>
-    <input type="text" id="serialNumber" formControlName="equipo_serial" />
-  </div>
-  <!-- {{asignacion.serial}} -->
+  <div class="formAsignar" style="background-color: #ffc872; text-align: left">
+    <div style="text-align: center">
+      <h2 style="color: white; text-align: center">Registrar Equipo</h2>
+      <hr color="white" style="width: 50%" />
+    </div>
+    <div class="inputForm">
+      <label for="selectedTipo">TIPO EQUIPO:</label>
 
-  <div class="inputForm">
-    <label for="licenciaSO">VERSION SO:</label>
-    <input type="text" id="licenciaSO" formControlName="version_so" />
-  </div>
-  <div class="inputForm">
-    <label for="licenciaOFFICE">VERSION OFFICE:</label>
-    <input type="text" id="licenciaOFFICE" formControlName="version_office" />
-  </div>
-  <div class="inputForm">
-    <label for="productKeySO">PRODUCT KEY SO:</label>
-    <input type="text" id="productKeySO" formControlName="key_so" />
-  </div>
-  <div class="inputForm">
-    <label for="productKeyOFFICE">PRODUCT KEY OFFICE:</label>
-    <input type="text" id="productKeyOFFICE" formControlName="key_office" />
-  </div>
+      <mat-form-field>
+        <mat-select formControlName="tipoEquipo">
+          <mat-option value="LAPTOP">LAPTOP</mat-option>
+          <mat-option value="DESKTOP">DESKTOP</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="inputForm">
+      <label for="serialNumber">SERIAL:</label>
+      <input type="text" id="serialNumber" formControlName="serial" />
+    </div>
 
-  <div>
-    <h2 style="color: white; text-align: center">CARACTERISTICAS</h2>
-    <hr color="white" style="width: 50%" />
-  </div>
-  <div style="display: flex; column-gap: 2em">
-    <div style="width: 50%" class="inputForm">
+    <div>
+      <h2 style="color: white; text-align: center">CARACTERISTICAS</h2>
+      <hr color="white" />
+    </div>
+    <div class="inputForm">
       <label for="tipo_equipo">RAM ( GB ):</label>
       <input type="text" formControlName="ram" />
     </div>
-    <div style="width: 50%" class="inputForm">
+    <div class="inputForm">
       <label for="tipo_equipo">CPU :</label>
-      <input type="text" formControlName="equipo_cpu" />
+      <input type="text" formControlName="procesador" />
     </div>
-  </div>
-  <div style="display: flex; column-gap: 2em">
-    <div style="width: 50%" class="inputForm">
+    <div class="inputForm">
       <label for="tipo_equipo">DISCO ( GB ):</label>
-      <input type="text" formControlName="disco" />
+      <input type="text" formControlName="discoDuro" />
     </div>
-  </div>
 
-  <div class="inputForm" style="margin-top: 3em">
-    <button id="btnFinalizar" (click)="add()">
-      {{ btnText }}
-    </button>
+    <div class="inputForm">
+      <label style="color: white" for="area">Licencias:</label>
+      <mat-form-field>
+        <mat-select
+          multiple
+          [(ngModel)]="selectedLicencias"
+          [compareWith]="comparer"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <mat-option *ngFor="let iobject of licencias" [value]="iobject"
+            >{{ iobject.producto }} - {{ iobject.productoSerial }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="inputForm" style="margin-top: 3em">
+      <button id="btnFinalizar" (click)="add()">
+        {{ btnText }}
+      </button>
+    </div>
   </div>
 </form>

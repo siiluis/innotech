@@ -1,0 +1,25 @@
+<form class="formAsignar" [formGroup]="licenciaForm">
+  <div>
+    <h2 style="color: white; text-align: center">Registrar Licencia</h2>
+    <hr color="white" style="width: 50%" />
+  </div>
+  <div class="inputForm">
+    <label style="color: white" for="producto">Producto:</label>
+    <input type="text" id="producto" formControlName="producto" required />
+  </div>
+  <div class="inputForm">
+    <label style="color: white" for="productoSerial">Serial:</label>
+    <input
+      type="text"
+      id="productoSerial"
+      formControlName="productoSerial"
+      required
+    />
+  </div>
+
+  <div class="inputForm" style="margin-top: 3em">
+    <button id="btnFinalizar" (click)="add()">
+      {{ btnText }}
+    </button>
+  </div>
+</form>

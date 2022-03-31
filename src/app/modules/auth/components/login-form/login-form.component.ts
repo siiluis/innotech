@@ -13,11 +13,8 @@ export class LoginFormComponent implements OnInit {
   actionAuth: string = 'login';
 
   loginForm = new FormGroup({
-    email: new FormControl('luis@gmail.com', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl('12345678', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
   constructor(private route: ActivatedRoute, private authService: AuthService) {
     this.route.url.subscribe((route) => {
@@ -34,5 +31,6 @@ export class LoginFormComponent implements OnInit {
 
   ingresar() {
     this.authService.actionAuth(this.loginForm.value, this.actionAuth);
+    this.loginForm.reset();
   }
 }

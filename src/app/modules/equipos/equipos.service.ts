@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Equipo, IEquipo } from './models/equipo.model';
+import { IEquipo } from './models/equipo.model';
 import { IResponse } from 'src/app/shared/models/response.model';
 import { Router } from '@angular/router';
 import { NotificacionesService } from 'src/app/shared/notificaciones.service';
@@ -10,10 +10,10 @@ import { NotificacionesService } from 'src/app/shared/notificaciones.service';
   providedIn: 'root',
 })
 export class EquiposService {
-  readonly APP = 'equipos';
+  readonly APP = 'equipo';
   readonly API = `${environment.URL_API}/${this.APP}`;
   equiposLista: IEquipo[] = [];
-  equipo: Equipo = new Equipo();
+  equipos$ = new EventEmitter<IEquipo[]>();
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -30,8 +30,8 @@ export class EquiposService {
 
   getEquipos() {
     this.http.get<IResponse>(this.API).subscribe((response: IResponse) => {
-      console.log(response.data);
       this.equiposLista = response.data;
+      this.equipos$.emit(this.equiposLista);
     });
   }
 
@@ -41,14 +41,14 @@ export class EquiposService {
 
   updateEquipo(equipo: IEquipo) {
     this.http
-      .put<IResponse>(this.API, equipo)
+      .patch<IResponse>(`${this.API}/${equipo.id}`, equipo)
       .subscribe((response: IResponse) => {
         this.notificacionService.alertOk('OK', 'Se actualizo el equipo.');
         this.router.navigate(['/app/modules/equipos/list']);
       });
   }
 
-  deleteEquipo(id: string | undefined) {
+  deleteEquipo(id: number | undefined) {
     this.http
       .delete<IResponse>(`${this.API}/${id}`)
       .subscribe((response: IResponse) => {

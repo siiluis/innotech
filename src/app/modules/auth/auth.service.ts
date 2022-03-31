@@ -4,6 +4,7 @@ import * as bcrypt from 'bcryptjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { NotificacionesService } from 'src/app/shared/notificaciones.service';
 
 interface ResponseLogin {
   access_token: string;
@@ -19,7 +20,11 @@ function cifrarPassword(password: string): string {
 export class AuthService {
   readonly APP = 'auth';
   readonly API = `${environment.URL_API}/${this.APP}`;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private notificacionService: NotificacionesService
+  ) {}
 
   actionAuth(credenciales: IAuth, accion: string) {
     if (accion === 'register') {
@@ -43,10 +48,19 @@ export class AuthService {
   }
 
   register(email: string, password: string) {
+    const nombres = 'Luis Armando';
+    const apellidos = 'Sarmiento ';
     this.http
-      .post(`${this.API}/register`, { email, password })
+      .post(`${environment.URL_API}/usuario`, {
+        nombres,
+        apellidos,
+        email,
+        password,
+      })
       .subscribe((response) => {
         console.log(response);
+        this.notificacionService.alertOk('OK', 'Usuario Registrado');
+        this.router.navigateByUrl('auth/login');
       });
   }
 

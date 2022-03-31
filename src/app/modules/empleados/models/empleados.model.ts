@@ -21,13 +21,14 @@ export class Empleado {
   ) {}
 }
 
-export function createForm(empleado: IEmpleado1) {
+export function createForm(empleado?: IEmpleado1) {
   return new FormGroup({
-    id: new FormControl(empleado.id),
-    nombre: new FormControl(empleado.nombre, [Validators.required]),
-    cedula: new FormControl(empleado.cedula, [Validators.required]),
-    email: new FormControl(empleado.email, [Validators.required]),
-    telefono: new FormControl(empleado.telefono, [Validators.required]),
+    id: new FormControl(empleado?.id),
+    nombre: new FormControl(empleado?.nombre, [Validators.required]),
+    cedula: new FormControl(empleado?.cedula, [Validators.required]),
+    email: new FormControl(empleado?.email, [Validators.required]),
+    telefono: new FormControl(empleado?.telefono, [Validators.required]),
+    area: new FormControl(empleado?.area?.id),
   });
 }
 

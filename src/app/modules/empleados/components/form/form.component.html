@@ -22,15 +22,13 @@
     </div>
     <div class="inputForm">
       <label style="color: white" for="area">Area:</label>
-      <select
-        name="miselect"
-        [(ngModel)]="areasSeleccionada"
-        [ngModelOptions]="{ standalone: true }"
-      >
-        <option [value]="item" *ngFor="let item of areas">
-          {{ item.nombre }}
-        </option>
-      </select>
+      <mat-form-field appearance="standard">
+        <mat-select [(value)]="areasSeleccionada" formControlName="area">
+          <mat-option [value]="option.id" *ngFor="let option of areas">{{
+            option.nombre
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
   <div style="text-align: center">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmpleadosService } from '../../empleados.service';
+import { IEmpleado1 } from '../../models/empleados.model';
 
 class Empleados {}
 @Component({
@@ -16,6 +17,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.empleadosService.getEmpleados();
-    console.log(this.empleadosService.empleadosLista1);
+  }
+
+  redirect(empleados: IEmpleado1) {
+    this.router.navigate(['/app/modules/empleados/add'], {
+      state: { data: empleados },
+    });
   }
 }

@@ -1,0 +1,32 @@
+<form class="formAsignar" [formGroup]="PerifericoForm">
+  <div>
+    <h2 style="color: white; text-align: center">Registrar Periferico</h2>
+    <hr color="white" style="width: 50%" />
+  </div>
+  <div class="inputForm">
+    <label style="color: white" for="descripcion">Descripcion:</label>
+    <input
+      type="text"
+      id="descripcion"
+      formControlName="descripcion"
+      required
+      placeholder="teclado"
+    />
+  </div>
+  <div class="inputForm">
+    <label style="color: white" for="marca">Marca:</label>
+    <input
+      type="text"
+      id="marca"
+      formControlName="marca"
+      required
+      placeholder="Genius"
+    />
+  </div>
+
+  <div class="inputForm" style="margin-top: 3em">
+    <button id="btnFinalizar" (click)="add()">
+      {{ btnText }}
+    </button>
+  </div>
+</form>

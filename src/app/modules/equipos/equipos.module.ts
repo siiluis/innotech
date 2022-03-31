@@ -5,7 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormAddComponent } from './components/form-add/form-add.component';
 import { ListComponent } from './components/list/list.component';
 import { ModulesModule } from 'src/app/shared/modules/modules.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +23,15 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [HomeComponent, FormAddComponent, ListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), ModulesModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ModulesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
 })
 export class EquiposModule {}

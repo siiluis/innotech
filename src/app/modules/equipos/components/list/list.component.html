@@ -4,32 +4,27 @@
   <table>
     <tr>
       <th>ID</th>
+      <th>Disponible</th>
       <th>Tipo Equipo</th>
       <th>Serial</th>
       <th>Procesador</th>
       <th>Memoria Ram</th>
-      <th>Disco</th>
-      <th>SO</th>
-      <th>Key SO</th>
-      <th>Office</th>
-      <th>Key Office</th>
-      <th>Fecha Registro</th>
+      <th>Disco Duro</th>
+      <th>Fecha Creacion</th>
       <th>Acciones</th>
     </tr>
     <tr *ngFor="let equipo of equiposService.equiposLista">
-      <td>{{ equipo.ID }}</td>
+      <td>{{ equipo.id }}</td>
+      <td>{{ equipo.disponible === "0" ? "NO" : "SI" }}</td>
       <td>
-        {{ equipo.tipo_equipo === "1" ? "Laptop" : "Desktop" }}
+        {{ equipo.tipoEquipo }}
       </td>
-      <td>{{ equipo.equipo_serial }}</td>
-      <td>{{ equipo.equipo_cpu }}</td>
+      <td>{{ equipo.serial }}</td>
+      <td>{{ equipo.procesador }}</td>
       <td>{{ equipo.ram }} GB</td>
-      <td>{{ equipo.disco }} GB</td>
-      <td>{{ equipo.version_so }}</td>
-      <td>{{ equipo.key_so }}</td>
-      <td>{{ equipo.version_office }}</td>
-      <td>{{ equipo.key_office }}</td>
-      <td>{{ equipo.fecha_creacion | date }}</td>
+      <td>{{ equipo.discoDuro }} GB</td>
+
+      <td>{{ equipo.createdAt | date }}</td>
       <!--  <td> -->
       <!--   ng-href="/inventarios/#!asignar_form/{{item.ID}}" -->
       <!-- <a> <i class="fa fa-pencil-square" style="font-size: 25px"></i></a> -->
@@ -37,14 +32,14 @@
       <td>
         <a>
           <i
-            [routerLink]="['/app/modules/equipos/add', equipo.ID]"
+            (click)="redirect(equipo)"
             class="fa fa-pencil-square"
             style="font-size: 25px; padding-right: 2px; cursor: pointer"
           ></i
         ></a>
         <i
           class="fa fa-times-rectangle"
-          (click)="equiposService.deleteEquipo(equipo.ID)"
+          (click)="equiposService.deleteEquipo(equipo.id)"
           style="font-size: 25px; cursor: pointer; color: red"
         ></i>
       </td>

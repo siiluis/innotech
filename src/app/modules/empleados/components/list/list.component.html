@@ -28,7 +28,7 @@
       <td>
         <a>
           <i
-            [routerLink]="['/app/modules/empleados/add', empleados.id]"
+            (click)="redirect(empleados)"
             class="fa fa-pencil-square"
             style="font-size: 25px; padding-right: 2px; cursor: pointer"
           ></i
@@ -42,4 +42,3 @@
     </tr>
   </table>
 </div>
-<!--  ng-click="eliminar(item.ID)" -->

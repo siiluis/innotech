@@ -1,0 +1,38 @@
+<h1>Equipos</h1>
+<hr color="white" />
+<div class="tableContainer">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Producto</th>
+      <th>Serial</th>
+      <th>Fecha Creacion</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let licencia of licenciasService.licenciasLista">
+      <td>{{ licencia.id }}</td>
+      <td>
+        {{ licencia.producto }}
+      </td>
+      <td>{{ licencia.productoSerial }}</td>
+
+      <td>{{ licencia.createdAt | date }}</td>
+
+      <td>
+        <a>
+          <i
+            (click)="redirect(licencia)"
+            class="fa fa-pencil-square"
+            style="font-size: 25px; padding-right: 2px; cursor: pointer"
+          ></i
+        ></a>
+        <i
+          class="fa fa-times-rectangle"
+          (click)="licenciasService.deleteLicencia(licencia.id)"
+          style="font-size: 25px; cursor: pointer; color: red"
+        ></i>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--  ng-click="eliminar(item.ID)" -->
